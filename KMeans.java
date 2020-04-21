@@ -7,20 +7,17 @@ public class KMeans{
 		String filename = input.next();
 		System.out.println("How many clusters? ");
 		int clusters = input.nextInt();
-		Sample list = new Sample(fileReader(filename));
-		Sample originalCluster = new Sample();
+		Sample originalCluster = new Sample(fileReader(filename));
 	}
-
-
-
-
 
 	public double[] fileReader(String file){
       	Scanner reader = new Scanner(file);
       	int count = 0;
+      	ArrayList nums = new ArrayList<Doubles>();
       	while (reader.hasNextLine()) {
-  			list[count++] = new Point(reader.nextInt(), reader.nextInt()); // Read the next two integers. Increment count after this operation.
+  			nums.add(reader.next());
 		}
+		return nums;
     }
 
 }
