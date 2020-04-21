@@ -1,6 +1,6 @@
 package pa06;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Sample {
 	ArrayList<Double> sample;
@@ -23,7 +23,7 @@ public class Sample {
 		System.out.println("s2="+s2);
 		
 	}
-
+	
 	public double distance(Sample a, Sample b){
 		return Math.sqrt(Math.pow(b.x - a.x,2) + Math.pow(b.y - a.y,2));
 	}
