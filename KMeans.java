@@ -9,7 +9,7 @@ public class KMeans{
 		System.out.println("How many clusters? ");
 		int clusters = input.nextInt();
 	}
-
+//j
 
 
 
