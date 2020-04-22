@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Cluster{
 	ArrayList<Point> originalData;
+	ArrayList<Point> clusteredData;
 	Point centroid;
 
 	public Cluster(String filename) throws FileNotFoundException{
@@ -10,6 +11,7 @@ public class Cluster{
 	}
 	public Cluster(Point clusterPoint){
 		centroid = clusterPoint;
+		clusteredData = new ArrayList<Point>;
 	}
 	public void fileReader(file){
       	Scanner reader = new Scanner(file);
@@ -17,10 +19,20 @@ public class Cluster{
   			originalData.add(Point(reader.nextInt(),reader.nextInt())); // Read the next two integers. Increment count after this operation.
 		}
     }
-    public Point randomElement () {
+    public Point randomElement(){
         Random random = new Random();
         int randInt = random.nextInt(originalData.length);
         return originalData[randInt];
+    }
+    public Point findAverage(){
+    	int sumX = 0;
+    	int sumY = 0;
+    	for (int i = 0; i < clusteredData.length; i++){
+    		sumX += clusteredData[i].x;
+    		sumY += clusteredData[i].y;
+    	}
+    	Point average = new Point(sumX/clusteredData.length, sumY/clusteredData.length);
+    	return average;
     }
 
  }
