@@ -6,16 +6,17 @@ public class KMeans{
 		Scanner input = new Scanner(System.in);
 		System.out.println("What is the file name? (ends in .txt)");//asks user for a file name
 		String filename = input.next();
-		Cluster originalData = new Cluster(filename);//inital call for the Cluster constructor with String filename parameter
-		Cluster[] clusters = Cluster[15];
+		Cluster cluster = new Cluster(filename);
+		Point[] originalData = new Point[5000];//inital call for the Point constructor with String filename parameter
+		Cluster[] clusters = new Cluster[15];
 		for (int i = 0; i < clusters.length; i++){
-			clusters[i] = new Cluster(originalData.randomElement);//subsequent calls for clusters with centroid point parameter
+			clusters.centroid[i] = new Cluster(cluster.randomElement());//subsequent calls for clusters with centroid point parameter
 		}
 		for (int j = 0; j < originalData.length; j++){
 			clusters[findClosest(originalData[j], clusters)].clusteredData.add(originalData[j]);//traverses original data and sorts the points into closest clusters
 		}
 		for (int k = 0; k < 100; k++){//clustering repeated 100
-			replaceClusters(clusters);	
+			replaceClusters(clusters);
 		}
 	}
 	public static int findClosest(Point a, Cluster[] clusters){//this method finds the closest cluster point to a specific data point
