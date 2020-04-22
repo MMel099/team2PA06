@@ -5,12 +5,11 @@ import java.util.*;
 public class Sample {
 	ArrayList<Double> sample;
 	
-	public Sample(double[] values) {
-		this.sample = new ArrayList<Double>();
+	public Sample(Point[] values) {
+		this.sample = new ArrayList<Point>();
 		for (int i=0; i<values.length; i++) {
 			sample.add(values[i]);
 		}
-		
 	}
 	
 	public static void main(String[] args) {
