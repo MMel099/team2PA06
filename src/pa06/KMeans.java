@@ -1,24 +1,24 @@
 import java.util.*;
 
-
+//this is the KMeans class and it is responsible for the bulk of the clustering algorithm
 public class KMeans{
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
-		System.out.println("What is the file name? (ends in .txt)");
+		System.out.println("What is the file name? (ends in .txt)");//asks user for a file name
 		String filename = input.next();
-		Cluster originalData = new Cluster(filename);
+		Cluster originalData = new Cluster(filename);//inital call for the Cluster constructor with String filename parameter
 		Cluster[] clusters = Cluster[15];
 		for (int i = 0; i < clusters.length; i++){
-			clusters[i] = new Cluster(originalData.randomElement);
+			clusters[i] = new Cluster(originalData.randomElement);//subsequent calls for clusters with centroid point parameter
 		}
 		for (int j = 0; j < originalData.length; j++){
-			clusters[findClosest(originalData[j], clusters)].clusteredData.add(originalData[j]);
+			clusters[findClosest(originalData[j], clusters)].clusteredData.add(originalData[j]);//traverses original data and sorts the points into closest clusters
 		}
-		for (int k = 0; k < 100; k++){
+		for (int k = 0; k < 100; k++){//clustering repeated 100
 			replaceClusters(clusters);	
 		}
 	}
-	public static int findClosest(Point a, Cluster[] clusters){
+	public static int findClosest(Point a, Cluster[] clusters){//this method finds the closest cluster point to a specific data point
 		int closestIndex = -1;
 		int closestDistance = -1;
 		for (int i = 0; i < clusters.length; i++){
@@ -28,16 +28,16 @@ public class KMeans{
 				closestIndex = i;
 			}
 		}
-		return closestIndex;
+		return closestIndex;//index of closest cluster returned
 	}
-	public static void replaceClusters(Cluster[] clusters){
-		for (int i = 0; i < clusters.length; i++){
+	public static void replaceClusters(Cluster[] clusters){//this method finds the average of a cluster and makes a new cluster with that centroid
+		for (int i = 0; i < clusters.length; i++){//traverses the array of clusters
 			Point centroid = clusters[i].findAverage();
-			clusters[i] = new Cluster(centroid);
-			for (int j = 0; j < originalData.length; j++){
+			clusters[i] = new Cluster(centroid);//constructs new cluster with calculated centroid point
+			for (int j = 0; j < originalData.length; j++){//traverses original data and sorts the points into closest clusters
 				cluster[findClosest(originalData[j], clusters)].clusteredData.add(originalData[j]);
 			}
-			System.out.println("New Cluster " + (i + 1) + " has centroid " + clusters[i].centroid.toString() + " and " + clusters[i].length + " points.");
+			System.out.println("New Cluster " + (i + 1) + " has centroid " + clusters[i].centroid.toString() + " and " + clusters[i].length + " points.");//prints the cluster
 		}
 	}
 }

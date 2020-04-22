@@ -1,37 +1,37 @@
 import java.util.*;
-
+//this is the cluster class that stores an Arraylist of points and a centroid point
 public class Cluster{
 	ArrayList<Point> originalData;
 	ArrayList<Point> clusteredData;
 	Point centroid;
 
-	public Cluster(String filename) throws FileNotFoundException{
+	public Cluster(String filename){//this constructor is for the initial call, when data has to be read from a file
 		values = new ArrayList<Point>;
 		fileReader(filename);
 	}
-	public Cluster(Point clusterPoint){
+	public Cluster(Point clusterPoint){//this constructor is for future calls when the data is being reclustered
 		centroid = clusterPoint;
 		clusteredData = new ArrayList<Point>;
 	}
-	public void fileReader(file){
+	public void fileReader(file) throws FileNotFoundException{//this method reads a file whose name was passed in as a parameter
       	Scanner reader = new Scanner(file);
       	while (reader.hasNextLine()) {
-  			originalData.add(Point(reader.nextInt(),reader.nextInt())); // Read the next two integers. Increment count after this operation.
+  			originalData.add(Point(reader.nextInt(),reader.nextInt()));//this line reads both integer in the line and stores then as coordinates for a point
 		}
     }
-    public Point randomElement(){
+    public Point randomElement(){//this method finds a random index in an ArrayList and returns that element of the ArrayList
         Random random = new Random();
         int randInt = random.nextInt(originalData.length);
         return originalData[randInt];
     }
-    public Point findAverage(){
+    public Point findAverage(){//this method finds the average point in a cluster
     	int sumX = 0;
     	int sumY = 0;
-    	for (int i = 0; i < clusteredData.length; i++){
-    		sumX += clusteredData[i].x;
-    		sumY += clusteredData[i].y;
+    	for (int i = 0; i < clusteredData.length; i++){//traverses through cluster points
+    		sumX += clusteredData[i].x;//adds all x values
+    		sumY += clusteredData[i].y;//adds all y values
     	}
-    	Point average = new Point(sumX/clusteredData.length, sumY/clusteredData.length);
+    	Point average = new Point(sumX/clusteredData.length, sumY/clusteredData.length);//creates a new average point
     	return average;
     }
 
