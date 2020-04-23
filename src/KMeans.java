@@ -5,10 +5,10 @@ import java.io.*;
 public class KMeans{
 	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
-		System.out.print("What is the file name? (ends in .txt)");//asks user for a file name
+		System.out.print("What is the file name? (ends in .txt) ");//asks user for a file name
 		String filename = input.next();
+		input.close();
 		Cluster cluster = new Cluster(filename);
-		Point[] originalData = new Point[5000];//inital call for the Point constructor with String filename parameter
 		Cluster[] clusters = new Cluster[15];
 		for (int i = 0; i < clusters.length; i++){
 			clusters[i] = new Cluster(cluster.randomElement());//subsequent calls for clusters with centroid point parameter

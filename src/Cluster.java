@@ -2,25 +2,26 @@ import java.util.*;
 import java.io.*;
 //this is the cluster class that stores an Arraylist of points and a centroid point
 public class Cluster{
-	ArrayList<Point> originalData = new ArrayList<Point>();
+	ArrayList<Point> originalData;
 	ArrayList<Point> clusteredData;
 	Point centroid;
 
 	public Cluster(String filename) throws IOException{//this constructor is for the initial call, when data has to be read from a file
-		ArrayList<Point> values = new ArrayList<Point>();
+		clusteredData = new ArrayList<Point>();
+		originalData = new ArrayList<Point>();
 		fileReader(filename);
 		this.centroid = new Point(0, 0);
 	}
 	public Cluster(Point clusterPoint){//this constructor is for future calls when the data is being reclustered
 		centroid = clusterPoint;
-		clusteredData = new ArrayList<Point>();
 	}
 	public void fileReader(String file) throws IOException {//this method reads a file whose name was passed in as a parameter
-      	Scanner reader = new Scanner(file);
+      	Scanner reader = new Scanner(new File(file));
       	while (reader.hasNextLine()) {
-					Point p = new Point(reader.nextInt(),reader.nextInt());
-  				originalData.add(p);//this line reads both integer in the line and stores then as coordinates for a point
-				}
+      		Point p = new Point(reader.nextLong(),reader.nextLong());
+  			originalData.add(p);//this line reads both integer in the line and stores then as coordinates for a point
+		}
+      	reader.close();
     }
     public Point randomElement(){//this method finds a random index in an ArrayList and returns that element of the ArrayList
         Random random = new Random();
